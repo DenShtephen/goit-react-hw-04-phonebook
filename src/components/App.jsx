@@ -12,7 +12,9 @@ const initializationState = [
 ];
 
 export const App = () => {
-  const [contacts, setContacts] = useState(initializationState);
+  const [contacts, setContacts] = useState(
+    () => JSON.parse(localStorage.getItem('contacts')) || initializationState
+  );
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
