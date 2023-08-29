@@ -17,21 +17,27 @@ export const ContactForm = ({ onSubmit }) => {
     setNumber('');
   };
 
-  const handleNameChange = evt => {
-    setName(evt.target.value);
-  };
+  const handleInputChange = evt => {
+    const inputName = evt.target.name;
 
-  const handleNumberChange = evt => {
-    setNumber(evt.target.value);
+    switch (inputName) {
+      case 'name':
+        setName(evt.target.value);
+        break;
+      case 'number':
+        setNumber(evt.target.value);
+        break;
+      default:
+        break;
+    }
   };
-
   return (
     <form onSubmit={handleSubmit} className="contact-form">
       <input
         type="text"
         name="name"
         value={name}
-        onChange={handleNameChange}
+        onChange={handleInputChange}
         placeholder="Joe Biden"
         pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces..."
@@ -41,7 +47,7 @@ export const ContactForm = ({ onSubmit }) => {
         type="text"
         name="number"
         value={number}
-        onChange={handleNumberChange}
+        onChange={handleInputChange}
         placeholder="696-96-96"
         pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}..."
         title="Phone number must be digits and can contain spaces, dashes..."
